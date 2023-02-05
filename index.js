@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", async (req, res) => {
- console.log("receive post request", req.body);
+ console.log("received post request", req.body);
  const r = await queryLangApi(req.body.text);
  res.json(r);
 });
