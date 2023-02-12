@@ -48,17 +48,19 @@ const queryLangApi = async function (text) {
   document,
   classificationModelOptions,
  });
+ const resProm = [];
 
  console.log("Categories:");
  classification.categories.forEach((category, i) => {
   console.log(`Name: ${category.name}, Confidence: ${category.confidence}`);
   // if a food item was mentioned query usda for nutrition facts of said food item
   if (category.name.toLowerCase().includes("food") && entities[i]) {
-     usdaGetFood(entities[i].name);
+     resProm.push(usdaGetFood(entities[i].name));
   }
  });
 
- return { entities, classification };
+ const res = await Promise.all(resProm)
+ return { res, entities, classification };
 };
 
 module.exports = { default: queryLangApi };

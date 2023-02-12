@@ -14,9 +14,10 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
  console.log("received post request", req.body);
- const text = JSON.parse(Object.keys(req.body)[0]).text;
+ const text = req.body.text;
  console.log("text : ", text);
  const r = await queryLangApi(text);
+ console.log("response : ", r);
  res.json(r);
 });
 
