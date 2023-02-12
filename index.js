@@ -8,21 +8,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
- console.log("received get request");
- res.send("Hello World!");
+  console.log("received get request");
+  res.send("Hello World!");
 });
 
 app.post("/", async (req, res) => {
- console.log("received post request", req.body);
- const text = req.body.text;
- console.log("text : ", text);
- const r = await queryLangApi(text);
- console.log("response : ", r);
- res.json(r);
+  console.log("received post request", req.body);
+  const text = req.body.text;
+  console.log("text : ", text);
+  const r = await queryLangApi(text);
+  console.log("response : ", r);
+  res.json(r);
 });
 
 app.listen(port, () => {
- console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port ${port}`);
 });
 
 queryLangApi("I want a ham and cheese sandwich");
